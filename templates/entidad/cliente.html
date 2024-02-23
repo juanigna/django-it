@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo_principal %}
+    Cliente: {{cliente.nombre}}
+{% endblock titulo_principal %}
+
+{% block principal %}
+    <section class="cliente_container">
+        <h1>Datos del cliente:</h1>
+        <p>Nombre: {{cliente.nombre}}</p>
+        <p>Apellido: {{cliente.apellido}}</p>
+        <p>Edad: {{cliente.edad}}</p>
+    </section>
+{% endblock principal %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block titulo_principal %}
+    My Veterinaria | Clientes🫏
+{% endblock %}
+
+{% block principal%}
+    <section class="clientes_container">
+        <h3 style="text-align: center;">Clientes</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Email</th>
+                    <th>Tipo de Iva</th>
+                    <th>Localidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for persona in clientes  %}
+                    <tr>
+                        <td>{{persona.nombre}}</td>
+                        <td>{{persona.apellido}}</td>
+                        <td>{{persona.edad}}</td>
+                        <td>{{persona.email}}</td>
+                        <td>{{persona.get_tipo_iva_display}}</td>
+                        <td>{{persona.localidad.nombre}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

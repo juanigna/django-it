@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block titulo_principal %}
+    My Veterinaria | Localidades
+{% endblock %}
+
+{% block principal%}
+    <section class="clientes_container">
+        <h3 style="text-align: center;">Localidades</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Codigo Postal</th>
+                    <th>Provincia</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for localidad in localidades  %}
+                    <tr>
+                        <td>{{localidad.nombre}}</td>
+                        <td>{{localidad.cp}}</td>
+                        <td>{{localidad.provincia}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

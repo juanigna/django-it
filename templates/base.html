@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href= {% static 'css/styles.css' %}>
+    <link rel="stylesheet" href= {% static 'css/clientes.css' %}>
+    <link rel="stylesheet" href= {% static 'css/cliente.css' %}>
+    <link rel="stylesheet" href= {% static 'css/animales.css' %}>
+
+    {% comment %} <link rel="stylesheet" href={%block css%}{%endblock%}> {% endcomment %}
+
+    <title>{% block titulo %} My Veterinaria {% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h3 class="titulo">
+        {% block titulo_principal %}
+            
+        {% endblock%}
+    </h3>
+    <h4>
+        {% block subtitulo %}
+
+        {% endblock %}
+    </h4>
+    <div class="container">
+        <main class="content-wrap">
+            {% block principal %}
+            
+            {% endblock %}
+        </main>
+        <footer class="footer">
+            <p>&copy; My Veterinaria</p>
+            <p>Todos los derechos reservados</p>
+            <p>Desarrollado por <span>Juan Ignacio</span></p>
+        </footer>
+    </div>
+</body>
+</html>

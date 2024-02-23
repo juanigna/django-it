@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block titulo_principal %}
+    My Veterinaria | Animales
+{% endblock titulo_principal %}
+
+
+{% block principal %}
+  <section class="animales_container"> 
+    <h3 style="text-align: center">Animales</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Raza</th>
+            <th>Categoria</th>
+            <th>Dueño</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for animal in animales %}
+          <tr>
+            <td>{{animal.nombre}}</td>
+            <td>{{animal.get_raza_display}}</td>
+            <td>{{animal.get_categoria_display}}</td>
+            <td>{{animal.dueno.nombre}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </section>
+{% endblock principal %}
+
+
+
