@@ -1,7 +1,30 @@
 {% extends "base.html" %}
-{% block principal %}
-    <section>
-        <h1>Animal By id:</h1>
-        <p>{{animal.nombre}}</p>
+{% load static %}
+
+
+{% block titulo_principal %}
+    My Veterinaria | Animal
+{% endblock %}
+
+{% block principal%}
+    <section class="clientes_container">
+        <h3 style="text-align: center;">Animal</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Raza</th>
+                    <th>Categoria</th>
+                    <th>Dueño</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>{{ animal.nombre }}</td>
+                <td>{{ animal.get_raza_display }}</td>
+                <td>{{ animal.get_categoria_display }}</td>
+                <td>{{ animal.dueno.nombre }}</td>
+                
+            </tbody>
+        </table>
     </section>
-{% endblock principal %}
+{% endblock %}

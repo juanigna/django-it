@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block titulo_principal %}
+    My Veterinaria | Eliminar
+{% endblock %}
+
+{% block principal%}
+    <section class="container center-text">
+        <form method="POST">
+            {% csrf_token %}
+            <h1>¿Esta seguro que desea eliminar este cliente?</h1>
+            <h4>Cliente: {{form.nombre}} {{form.apellido}}</h4>
+            <button class="btn-delete" type="submit">Eliminar</button>
+            <a href="{% url 'clientes' %}" class="btn" type="button">   
+                Cancelar
+            </a>
+        </form>
+    </section>
+{% endblock %}

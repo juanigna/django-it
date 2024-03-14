@@ -5,9 +5,10 @@
     My Veterinaria | Animales
 {% endblock titulo_principal %}
 
+<!-- This is the template for the animals section -->
 
 {% block principal %}
-  <section class="animales_container"> 
+  <section class="container"> 
     <h3 style="text-align: center">Animales</h3>
       <table class="table">
         <thead>
@@ -16,6 +17,7 @@
             <th>Raza</th>
             <th>Categoria</th>
             <th>Dueño</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -25,6 +27,11 @@
             <td>{{animal.get_raza_display}}</td>
             <td>{{animal.get_categoria_display}}</td>
             <td>{{animal.dueno.nombre}}</td>
+            <td>    
+              <a href="{% url 'modificar-animal' animal.id %}" class="btn btn-info">Editar</a>
+              <a href="{% url 'animal' animal.id %}" class="btn btn-primary">Detalles</a>    
+              <a href="{% url 'eliminar-animal' animal.id %}" class="btn btn-danger">Eliminar</a>
+          </td>
           </tr>
           {% endfor %}
         </tbody>

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block titulo_principal %}
+    My Veterinaria | Consultas
+{% endblock %}
+
+{% block principal%}
+    <section class="container">
+        <h3 style="text-align: center;">Consultas</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Costo</th>
+                    <th>Animal</th>
+                    <th>Dueño</th>
+                    <th>Enfermedad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if consultas.count %}
+                    {% for consulta in consultas  %}
+                        <tr>
+                            <td>{{consulta.fecha}}</td>
+                            <td>${{consulta.costo}}</td>
+                            <td>{{consulta.animal.nombre}}</td>
+                            <td>{{consulta.animal.dueno.nombre}}</td>
+                            <td>{{consulta.enfermedad.nombre}}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <p>No hay consultas registradas aun.</p>
+                {% endif %}
+                
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

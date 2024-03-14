@@ -24,21 +24,19 @@ TIPO_CATEGORIA_CHOICES = (
         ("OT", 'Otro')
     )
 
-# Create your models here.
-# class Cliente(models.Model):
-#     nombre = models.CharField("Nombre del cliente", max_length=60)
-#     apellido = models.CharField("Apellido del cliente", max_length=60)
-#     direccion = models.CharField("Direccion del cliente", max_length=200)
-#     edad = models.IntegerField("Edad del cliente")
-
+TIPO_ENFERMEDAD_CHOICES = (
+    ("L", "Leve"),
+    ("M", "Moderada"),
+    ("H", "Grave")
+)
 
 class Localidad(models.Model):
     nombre = models.CharField("Nombre de la localidad", max_length=60)
     cp = models.CharField("Codigo postal", max_length=10)
-    provincia = models.CharField(max_length=60)
+    provincia = models.CharField("Provincia", max_length=60)
     
     def __str__(self):
-        return self.nombre
+        return self.nombre + " - " + " " + self.cp + " - " + self.provincia
 
 
 class Persona(models.Model):
@@ -48,8 +46,11 @@ class Persona(models.Model):
     localidad = models.ForeignKey(Localidad, on_delete=models.PROTECT, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     activo = models.BooleanField(default=True)
-    fecha_nac = models.DateTimeField("Fecha de nacimiento", null=True, blank=True)
+    fecha_nac = models.DateField("Fecha de nacimiento", null=True, blank=True)
     tipo_iva = models.CharField("Tipo de IVA", max_length=2, choices=TIPO_IVA_CHOICES, default="CF")
+
+    def __str__(self):
+        return self.nombre
 
 
 class Instructor(models.Model):
@@ -63,3 +64,25 @@ class Animal(models.Model):
     raza = models.CharField("Raza del animal", max_length=2, choices=TIPO_RAZAS_CHOICES, default="OT")
     categoria = models.CharField("Categoria del animal", max_length=2, choices=TIPO_CATEGORIA_CHOICES, default="OT")
     dueno = models.ForeignKey(Persona, on_delete=models.PROTECT)
+    activo = models.BooleanField(default=True)
+
+    
+    def __str__(self):
+        return self.nombre + ", " + self.dueno.nombre
+
+class Enfermedad(models.Model):
+    nombre = models.CharField("Nombre de la enfermedad", max_length=60)
+    grado = models.CharField("Grado de la enfermedad", max_length=2, choices=TIPO_ENFERMEDAD_CHOICES)
+
+    def __str__(self):
+        return self.nombre
+
+
+class Consulta(models.Model):
+    fecha = models.DateField("Fecha de la consulta")
+    costo = models.PositiveIntegerField("Costo de la consulta")
+    animal = models.ForeignKey(Animal, on_delete=models.PROTECT)
+    enfermedad = models.ForeignKey(Enfermedad, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"Consulta: {self.animal} - {self.animal.dueno.nombre}"

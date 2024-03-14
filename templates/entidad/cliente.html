@@ -1,15 +1,31 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block titulo_principal %}
-    Cliente: {{cliente.nombre}}
-{% endblock titulo_principal %}
 
-{% block principal %}
-    <section class="cliente_container">
-        <h1>Datos del cliente:</h1>
-        <p>Nombre: {{cliente.nombre}}</p>
-        <p>Apellido: {{cliente.apellido}}</p>
-        <p>Edad: {{cliente.edad}}</p>
+{% block titulo_principal %}
+    My Veterinaria | Cliente
+{% endblock %}
+
+{% block principal%}
+    <section class="clientes_container">
+        <h3 style="text-align: center;">Cliente</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Email</th>
+                    <th>Tipo IVA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.apellido }}</td>
+                <td>{{ cliente.edad }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.get_tipo_iva_display }}</td>
+            </tbody>
+        </table>
     </section>
-{% endblock principal %}
+{% endblock %}

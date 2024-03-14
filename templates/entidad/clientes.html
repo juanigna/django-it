@@ -7,31 +7,38 @@
 {% endblock %}
 
 {% block principal%}
-    <section class="clientes_container">
+    <section class="container">
         <h3 style="text-align: center;">Clientes</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Edad</th>
-                    <th>Email</th>
-                    <th>Tipo de Iva</th>
-                    <th>Localidad</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for persona in clientes  %}
+        <table class="table table-hover text-center custom">
+                <thead class="thead-light">
                     <tr>
-                        <td>{{persona.nombre}}</td>
-                        <td>{{persona.apellido}}</td>
-                        <td>{{persona.edad}}</td>
-                        <td>{{persona.email}}</td>
-                        <td>{{persona.get_tipo_iva_display}}</td>
-                        <td>{{persona.localidad.nombre}}</td>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                        <th>Email</th>
+                        <th>Tipo de Iva</th>
+                        <th>Localidad</th>
+                        <th>Acciones</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {% for persona in clientes  %}
+                        <tr class="p-1 align-items-center">
+                            <td class="p-1">{{persona.nombre}}</td>
+                            <td class="p-1">{{persona.apellido}}</td>
+                            <td class="p-1">{{persona.edad}}</td>
+                            <td class="p-1">{{persona.email}}</td>
+                            <td class="p-1">{{persona.get_tipo_iva_display}}</td>
+                            <td class="p-1">{{persona.localidad.nombre}}</td>
+                            <td class="d-flex align-items-center p-1">    
+                                <a href="{% url 'modificar-cliente' persona.id %}" class="btn btn-primary">Editar</a>
+                                
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    
+                </tbody>
+        </table> 
+        
     </section>
 {% endblock %}

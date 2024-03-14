@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block titulo_principal %}
+    My Veterinaria | Enfermedades😷
+{% endblock %}
+
+{% block principal%}
+    <section class="container">
+        <h3 style="text-align: center;">Enfermedades</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Grado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if enfermedades.count %}
+                    {% for enfermedad in enfermedades  %}
+                        <tr>
+                            <td>{{enfermedad.nombre}}</td>
+                            <td>{{enfermedad.get_grado_display}}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <p>No hay consultas registradas aun.</p>
+                {% endif %}
+                
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

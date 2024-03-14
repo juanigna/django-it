@@ -1,16 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuevo Animal</title>
-</head>
-<body>
-    <h1>Crear nuevo formulario</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Crear">
-    </form>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static  %}
+
+{% block titulo_principal %}
+    My Veterinaria | Nuevo Animal
+{% endblock %}
+
+
+{% block principal %}
+
+<form method="POST" class="form-group">
+    {% csrf_token %}
+    {% for field in form.visible_fields %}
+        <div class="form-group">
+            <label>{{field.label}}</label> 
+            {{field}}
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">
+        <span class="button__text">Crear</span>
+        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+     </button>
+</form>
+
+{% endblock principal %}

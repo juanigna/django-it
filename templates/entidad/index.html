@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veterinaria | Home</title>
-</head>
-<body>
-    <h1 style="font-size:16px; text-align:center;">Bienvenido/a a mi pagina de Veterinaria</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block titulo_principal %}
+    My Veterinaria | Home
+{% endblock %}
+
+{% block principal%}
+    <section class="container">
+        <h1 class="mt-5 text-center">Bienvenido a la pagina de Lomas Veterinaria, que tenga una buena experiencia!</h1>
+        <p>Username: {{user.username.capitalize}}</p>
+    </section>
+{% endblock %}
